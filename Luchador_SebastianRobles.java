@@ -94,7 +94,7 @@ public class Luchador_SebastianRobles
     System.out.print("HP: "+hp+" ");    
     System.out.print("Ataque: "+atk+" ");    
     System.out.print("Defensa: "+def+" ");   
-    System.out.println("Agilidad: "+agi);    
+    System.out.println("Velocidad: "+agi);    
   }
 }
 
