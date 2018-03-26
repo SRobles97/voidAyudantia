@@ -1,4 +1,3 @@
-
 /** 
  * @S. Robles
  * @v0.000001
@@ -74,4 +73,3 @@ public class Luchador_SebastianRobles
     System.out.println("Agilidad: "+agi);    
   }
 }
-
