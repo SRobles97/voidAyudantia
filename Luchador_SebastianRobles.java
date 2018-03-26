@@ -3,7 +3,6 @@
  * @v0.000001
  */
 import java.util.Random;
-import java.util.Scanner;
 public class Luchador_SebastianRobles
 {
   private String[] generadorNombre(){
