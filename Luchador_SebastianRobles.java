@@ -7,42 +7,25 @@ import java.util.Random;
 import java.util.Scanner;
 public class Luchador_SebastianRobles
 {
-  private void generadorNombres(String[] aleatorio){
-    aleatorio[0] = "Igor";
-    aleatorio[1] = "Egg King";   
-    aleatorio[2] = "God";  
-    aleatorio[3] = "Dylantero";  
-    aleatorio[4] = "Messi";   
-    aleatorio[5] = "Chefcito";  
-    aleatorio[6] = "El Macho";  
-    aleatorio[7] = "King Dragon";   
-    aleatorio[8] = "Satanael";   
-    aleatorio[9] = "Caligula"; 
-    aleatorio[10] = "Jojo el Bizarro";  
-    aleatorio[11] = "Pink Guy";   
-    aleatorio[12] = "Dross";   
-    aleatorio[13] = "Roerto";  
-    aleatorio[14] = "Jeff";      
-  }    
-  private String obtenerNombre(String[] nombre)
-  {
-    Random azar = new Random();      
-    String name = nombre[azar.nextInt(15)];
+  private String[] generadorNombre(){
+    String[] nombres = {"Igor Spopovich","Egg King","God","Dylantero","Messi","Chefcito","Jeff","King Dragon","Satanael","Caligula","Papa Franku","Pink Guy","Dross","Roerto","Ethan"};
+    return nombres;
+  }
+  private String[] generadorFaccion(){
+    String[] facciones = {"Fuego","Agua","Tierra"};
+    return facciones;
+  }
+  private int aleatorizarArreglo(int first, int last){
+    Random azar = new Random();
+    int variado = last-first;
+    int pick = azar.nextInt(variado+1)+first;
+    return pick;
+  }  
+  private String obtenerNombre(String[] nombre){  
+    int i = aleatorizarArreglo(0,nombre.length-1);
+    String name = nombre[i];
     return name;
   }
-  private String elegirFaccion(){
-    Random azar = new Random();       
-    String faction = "";
-    int numero = azar.nextInt(3);
-    if(numero == 0){
-        faction = "Fuego";    
-    }else if(numero == 1){
-        faction = "Agua";        
-    }else{
-        faction = "Tierra";        
-    }
-    return faction;
-    }
   private int generarHP(int hdp){
     Random azar = new Random();
     hdp = 200 + azar.nextInt(300); 
@@ -88,7 +71,7 @@ public class Luchador_SebastianRobles
     System.out.print("HP: "+hp+" ");    
     System.out.print("Ataque: "+atk+" ");    
     System.out.print("Defensa: "+def+" ");   
-    System.out.println("Velocidad: "+agi);    
+    System.out.println("Agilidad: "+agi);    
   }
 }
 
