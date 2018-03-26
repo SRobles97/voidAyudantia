@@ -27,14 +27,8 @@ public class Luchador_SebastianRobles
   private String obtenerNombre(String[] nombre)
   {
     Random azar = new Random();      
-    String lnombre = "";
-    int numero = azar.nextInt(15);
-    for(int i=0; i<nombre.length;i++){
-      if(i == numero){
-        lnombre = nombre[i];
-        }
-    }
-    return lnombre;
+    String name = nombre[azar.nextInt(15)];
+    return name;
   }
   private String elegirFaccion(){
     Random azar = new Random();       
