@@ -1,10 +1,23 @@
 /** 
  * @S. Robles
- * @v0.000001
+ * @v0.000014
  */
 import java.util.Random;
 public class Luchador_SebastianRobles
 {
+  private String name, guild;
+  private int rank,hp,atk,def,spd
+  
+  private Luchador(){
+   this.name = obtenerNombre(generadorNombre());
+   this.guild = obtenerNombre(generadorFaccion());
+   this.rank = generarEstrella(this.rank);
+   this.hp = multiplicarStat(generarHP(this.hp),this.rank);
+   this.atk = multiplicarStat(generarAtaque(this.atk),this.rank);   
+   this.def = multiplicarStat(generarDefensa(this.def),this.rank);   
+   this.spd = multiplicarStat(generarAgi(this.spd),this.rank);      
+  }
+  
   private String[] generadorNombre(){
     String[] nombres = {"Igor Spopovich","Egg King","God","Dylantero","Messi","Chefcito","Jeff","King Dragon","Satanael","Caligula","Papa Franku","Pink Guy","Dross","Roerto","Ethan"};
     return nombres;
@@ -73,13 +86,17 @@ public class Luchador_SebastianRobles
     return stat;
   }
   
-  private void mostrarDatos(String name,String fac,int stars,int hp,int atk,int def,int agi){
-    System.out.println("Nombre del luchador: "+name);
-    System.out.println("N° Estrellas: "+stars+" Facción: "+fac);   
-    System.out.print("HP: "+hp+" ");    
-    System.out.print("Ataque: "+atk+" ");    
-    System.out.print("Defensa: "+def+" ");   
-    System.out.println("Agilidad: "+agi);    
+  private void mostrarDatos(){
+    System.out.println("Nombre del luchador: "+this.name);
+    System.out.println("N° Estrellas: "+this.rank+" Facción: "+this.guild);   
+    System.out.print("HP: "+this.hp+" ");    
+    System.out.print("Ataque: "+this.atk+" ");    
+    System.out.print("Defensa: "+this.def+" ");   
+    System.out.println("Velocidad: "+this.spd);    
   }
   
+  public static void main(String[] args){
+   Luchador testing = new Luchador();
+    testing.mostrarDatos();
+  }
 }
