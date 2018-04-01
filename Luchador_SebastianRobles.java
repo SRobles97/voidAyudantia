@@ -1,13 +1,8 @@
-
-/** 
- * @S. Robles
- * @v0.0001
- */
 import java.util.Random;
 public class Luchador
 {
-  private int hp,atk,def,spd,rank;
-  private String name,guild;
+  public int hp,atk,def,spd,rank;
+  public String name,guild;
     
   public Luchador(){
    this.name = obtenerNombre(generadorNombre());
@@ -92,4 +87,10 @@ public class Luchador
     System.out.println("N° Estrellas: "+this.rank+"\tFacción: "+this.guild);   
     System.out.println("HP:"+this.hp+" Ataque:"+this.atk+" Defensa:"+this.def+" Velocidad:"+this.spd);     
   }
+  
+  public void mostrar(){
+    System.out.println("Nombre del luchador: "+this.name);
+    System.out.println("N° Estrellas: "+this.rank+"\tFacción: "+this.guild);      
+  }
 }
+
