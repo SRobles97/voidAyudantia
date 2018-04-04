@@ -1,12 +1,16 @@
+package luchones;
+
 import java.util.Random;
 public class objetoEquipable
 {
   private int rarity, objetoI, objetoF;
+  private String stat;
   
-  public objetoEquipable(){
+  objetoEquipable(){
     this.rarity = generarEstrella(this.rarity);
     this.objetoI = crearStats(this.objetoI);
     this.objetoF = multiplicarStat(this.objetoI,this.rarity);
+    this.stat = getStat(nombreStat());
   }
   
   private int generarEstrella(int star){      
@@ -35,6 +39,29 @@ public class objetoEquipable
     return star;    
   }
   
+  private String getStat(String[] list) {
+      int a = random(0,list.length-1);
+      String nombre = list[a];
+      return nombre;
+    }  
+  
+  private String[] nombreStat() {
+  	String[] nombres = {"HP","ATK","DEF","SPD"};
+  	return nombres;
+  }
+  
+	private int random(int a, int b) { 
+		Random azar = new Random();
+		int rango = b-a;
+		int aleatorio = azar.nextInt(rango+1)+a;
+		return aleatorio;
+	}  
+ 
+  
+  public int getRarity() {
+	  return this.rarity;
+  } 
+  
   private int crearStats(int objeto){
     Random azar = new Random();
     objeto = 1+azar.nextInt(9);
@@ -47,7 +74,8 @@ public class objetoEquipable
   }
   
   public void mostrarObjeto(){
-    System.out.println("Valor: "+this.objetoF);
-    System.out.println("Rareza: "+this.rarity+" estrellas.");
+    System.out.println(this.stat+"+"+this.objetoF);
+    System.out.println("Rareza: "+this.rarity+" estrellas");
   }
 }
+
