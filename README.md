@@ -1,3 +1,3 @@
-25/03 añadido primer avance.
-01/04 añadido segundo avance.
-04/04 añadido tercer avance.
+25/03 AÑADIDO PRIMER AVANCE.<br />
+01/04 AÑADIDO SEGUNDO AVANCE.<br />
+04/04 AÑADIDO TERCER AVANCE.<br />
