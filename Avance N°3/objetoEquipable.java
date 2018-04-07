@@ -92,11 +92,6 @@ public class objetoEquipable
     System.out.println("Rareza: "+this.rarity+" estrellas");
   }
   
-  public static void main(String[] args) {
-	  objetoEquipable m = new objetoEquipable();
-	  m.mostrarObjeto();
-  }
-  
 }
 
   
