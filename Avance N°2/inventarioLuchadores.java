@@ -104,7 +104,7 @@ public class inventarioLuchadores {
 		break;
 		case 2: a = "Agua";
 		break;
-		case 3: a = "Tierra";
+		case 3: a = "Planta";
 		break;
 		}
 		return a;
@@ -140,7 +140,7 @@ public class inventarioLuchadores {
 	}
 	
 	public void filtrarFaccion() {
-		String mensaje = "(1) Fuego, (2) Agua, (3) Tierra.";
+		String mensaje = "(1) Fuego, (2) Agua, (3) Planta.";
 		int ingreso = 3;
 		int opcion = Integer.parseInt(ingresoEntero(mensaje,ingreso));
 		String guild = selecFaccion(opcion);
