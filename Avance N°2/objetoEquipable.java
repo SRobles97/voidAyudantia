@@ -3,8 +3,11 @@ package luchones;
 import java.util.Random;
 public class objetoEquipable
 {
-  private int rarity, objetoI, objetoF;
-  private String stat, tipo;
+  private int rarity;
+  private int objetoI;
+  private int objetoF;
+  private String stat;
+  private String tipo;
   
   objetoEquipable(){
     this.rarity = generarEstrella(this.rarity);
