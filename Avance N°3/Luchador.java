@@ -2,7 +2,11 @@ package luchones;
 
 import java.util.Random;
 public class Luchador {
-	private int rank,hp, atk, def, agi;
+	private int rank;
+	private int hp;
+	private int atk;
+	private int def;
+	private int agi;
 	private String name,guild;	
 	
 	Luchador(){
@@ -11,7 +15,7 @@ public class Luchador {
 		this.hp = random(200,500)*this.rank;
 		this.atk = random(20,70)*this.rank;
 		this.def = random(5,25)*this.rank;		
-		this.agi = random(10,100)+this.rank;	
+		this.agi = random(10,100)*this.rank;	
 		this.guild = getNombre(nombresFacciones());
 	}
 	
