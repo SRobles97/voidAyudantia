@@ -27,20 +27,6 @@ public class inventarioLuchadores {
 		}
 	}
 	
-	private int ingresoLuchador() {
-		try(Scanner teclado = new Scanner(System.in);) {	
-	     System.out.println("Ingresa el N° del luchador");
-	     int entry = teclado.nextInt();
-	     if(entry < 1 || entry > this.inventario.size()) {
-	    	 return ingresoLuchador();
-	     }else {
-	    	 return entry-1;
-	     }
-		}catch(Exception e) {
-			return ingresoLuchador();	
-		}		
-	}
-	
 	private boolean numeroEntero(String cadena, int rango) {
 		int numero;
 		try {
