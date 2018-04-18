@@ -4,7 +4,10 @@ import java.util.Random;
 
 public class Monstruo {
 	
-	private int hp,atk,def,agi;
+	private int hp;
+	private int atk;
+	private int def;
+	private int agi;
 	private objetoEquipable drop;
 	
 	Monstruo(){
