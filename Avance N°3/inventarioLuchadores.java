@@ -8,10 +8,11 @@ public class inventarioLuchadores {
 	
 	inventarioLuchadores(){
 		this.inventario = new ArrayList<Luchador>();
+		agregarLuchador();
 	}
 	
 	private boolean listaLlena(ArrayList<Luchador> lista) {	
-		if(lista.size()>10) {
+		if(lista.size()>25) {
 			return true;
 		}else {
 			return false;
@@ -19,39 +20,36 @@ public class inventarioLuchadores {
 	}
 	
 	private boolean listaVacia(ArrayList<Luchador> lista) {
-		if(lista.size() == 0) {
+		if(lista.size() == 1) {
 			return true;
 		}else {
 			return false;
 		}
 	}
 	
-	private int ingresoLuchador() {
-		try(Scanner teclado = new Scanner(System.in);) {	
-	     System.out.println("Ingresa el N� del luchador");
-	     int entry = teclado.nextInt();
-	     if(entry < 1 || entry > this.inventario.size()) {
-	    	 return ingresoLuchador();
-	     }else {
-	    	 return entry-1;
-	     }
-		}catch(Exception e) {
-			return ingresoLuchador();	
-		}		
-	}
-	
-	public int ingresoEntero(String mensaje, int ingreso) {
-		try(Scanner teclado = new Scanner(System.in);) {		
-			System.out.println(mensaje);
-			int entry = teclado.nextInt();
-			if(entry<1||entry>ingreso) {
-				return ingresoEntero(mensaje,ingreso);
+	private boolean numeroEntero(String cadena, int rango) {
+		int numero;
+		try {
+			numero = Integer.parseInt(cadena);
+			if(numero<1 || numero >rango) {
+				return false;				
 			}else {
-				return entry;
+				return true;
 			}
 		}catch(Exception e) {
+			return false;
+		}
+	}
+	
+	private String ingresoEntero(String mensaje, int ingreso) {
+		@SuppressWarnings("resource")
+		Scanner teclado = new Scanner(System.in);
+		System.out.println(mensaje);
+		String entrada = teclado.nextLine();
+		if(numeroEntero(entrada,ingreso) == true) {
+			return entrada;
+		}else {
 			return ingresoEntero(mensaje,ingreso);
-			
 		}
 	}
 	
@@ -63,32 +61,34 @@ public class inventarioLuchadores {
 		if(!listaLlena(this.inventario)) {
 			this.inventario.add(new Luchador());
 		}else {
-			System.out.println("El inventario de luchadores est� lleno...");
+			System.out.println("El inventario de luchadores está lleno...");
 			
 		}
 	}
 	
 	private void borrarLuchador() {
 		if(!listaVacia(this.inventario)) {
-			int posicion = ingresoLuchador();
+			String mensaje = "Ingresa el N° del luchador que quieres eliminar";
+			int rango = this.inventario.size();
+			int posicion = Integer.parseInt(ingresoEntero(mensaje,rango))-1;
 			this.inventario.remove(posicion);			
 		}else {
-			System.out.println("El inventario no tiene luchadores para eliminar...");
+			System.out.println("No se pueden eliminar más luchadores...");
 		}
 	}
 	
 	private void mostrarLuchador() {
-		if(!listaVacia(this.inventario)) {
-			int posicion = ingresoLuchador();
-			this.inventario.get(posicion).mostrarStats();
-		}else {
-			System.out.println("El inventario no tiene luchadores para mostrar...");				
-		}
+	   String mensaje = "Ingresa el N° del luchador que quieres mostrar";
+	   int rango = this.inventario.size();
+	   int posicion = Integer.parseInt(ingresoEntero(mensaje,rango))-1;
+	   this.inventario.get(posicion).mostrarStats();
 	}
 	
 	private void mostrarTodos() {
 		for(int i=0;i<this.inventario.size();i++) {
+			System.out.println("Luchador N°"+(i+1));
 			 this.inventario.get(i).mostrarDatos();
+			 System.out.println();
 		}
 	}	
 	
@@ -118,7 +118,12 @@ public class inventarioLuchadores {
 				temporal.add(this.inventario.get(i));
 			}
 		}
-		mostrarLuchadores(temporal);
+		if(!listaVacia(temporal)) {
+			mostrarLuchadores(temporal);			
+		}else {
+			System.out.println("No hay luchadores en la facción...");
+		}
+
 	}
 	
 	private void imprimirRango(int rank) {
@@ -128,13 +133,18 @@ public class inventarioLuchadores {
 				temporal.add(inventario.get(i));
 			}
 		}
-		mostrarLuchadores(temporal);		
+		if(!listaVacia(temporal)) {
+			mostrarLuchadores(temporal);				
+		}else {
+			System.out.println("No hay luchadores con ese rango...");			
+		}
+	
 	}
 	
 	public void filtrarFaccion() {
 		String mensaje = "(1) Fuego, (2) Agua, (3) Tierra.";
 		int ingreso = 3;
-		int opcion = ingresoEntero(mensaje,ingreso);
+		int opcion = Integer.parseInt(ingresoEntero(mensaje,ingreso));
 		String guild = selecFaccion(opcion);
 		imprimirFaccion(guild);
 	}	
@@ -142,7 +152,7 @@ public class inventarioLuchadores {
 	public void filtrarRango() {
 		String mensaje = "Selecciona el rango [1-5]";
 		int ingreso = 5;
-		int opcion = ingresoEntero(mensaje,ingreso);
+		int opcion = Integer.parseInt(ingresoEntero(mensaje,ingreso));
 		imprimirRango(opcion);
 	}		
 	
