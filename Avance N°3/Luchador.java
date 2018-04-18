@@ -7,7 +7,8 @@ public class Luchador {
 	private int atk;
 	private int def;
 	private int agi;
-	private String name,guild;	
+	private String name;
+	private String guild;	
 	
 	Luchador(){
 		this.name = getNombre(nombresLuchadores());
@@ -48,7 +49,7 @@ public class Luchador {
     }
     
     private String[] nombresFacciones() {
-    	String[] nombres = {"Fuego","Agua","Tierra"};
+    	String[] nombres = {"Fuego","Agua","Planta"};
     	return nombres;
     }
     
