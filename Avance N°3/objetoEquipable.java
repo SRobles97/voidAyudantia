@@ -66,12 +66,12 @@ public class objetoEquipable
   	return nombres;
   }
   
-	private int random(int a, int b) { 
-		Random azar = new Random();
-		int rango = b-a;
-		int aleatorio = azar.nextInt(rango+1)+a;
-		return aleatorio;
-	}  
+  private int random(int a, int b) { 
+	Random azar = new Random();
+	int rango = b-a;
+	int aleatorio = azar.nextInt(rango+1)+a;
+	return aleatorio;
+  }  
  
   
   public int getRarity() {
