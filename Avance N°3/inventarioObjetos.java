@@ -11,7 +11,7 @@ public class inventarioObjetos {
 	}
 	
 	private boolean inventarioLleno(ArrayList<objetoEquipable> lista) {
-		if(lista.size() == 20) {
+		if(lista.size() == 10) {
 			return true;
 		}else {
 			return false;
@@ -26,6 +26,20 @@ public class inventarioObjetos {
 		}
 	}
 	
+	private boolean numeroEntero(String cadena, int rango) {
+		int numero;
+		try {
+			numero = Integer.parseInt(cadena);
+			if(numero < 1 || numero > rango) {
+				return false;
+			}else {
+				return true;
+			}
+		}catch(Exception e) {
+				return false;
+		}
+	}
+	
 	private void agregarObjeto() {
 		if(!inventarioLleno(this.inventory)) {
 			this.inventory.add(new objetoEquipable());
@@ -36,36 +50,25 @@ public class inventarioObjetos {
 	
 	private void quitarObjeto() {
 		if(!inventarioVacio(this.inventory)) {
-			int a = ingresoObjeto(this.inventory);
-			this.inventory.remove(a);
+			String mensaje = "Ingresa el NÂ° del objeto que quieres botar.";
+			int ingreso = this.inventory.size();
+			int i = Integer.parseInt(ingresoEntero(mensaje,ingreso))-1;
+			this.inventory.remove(i);
 		}else {
-			System.out.println("No hay ningún objeto en el inventario...");			
+			System.out.println("No hay ningÃºn objeto en el inventario...");			
 		}
 		
 	}
-	
-	private int ingresoObjeto(ArrayList<objetoEquipable> lista) {
-		try (Scanner teclado = new Scanner(System.in);){	
-	     System.out.println("Ingresa el N° del objeto");
-	     int entry = teclado.nextInt();
-	     if(entry < 1 || entry > lista.size()) {
-	    	 return ingresoObjeto(lista);
-	     }else {
-	    	 return entry-1;
-	     }
-		}catch(Exception e) {
-			return ingresoObjeto(lista);	
-		}		
-	}	
 	
 	public void mostrarInventario(ArrayList<objetoEquipable> lista) {
 		if(!inventarioVacio(lista)) {
 			System.out.println("INVENTARIO");
 			for(int i=0;i<lista.size();i++) {
 				lista.get(i).mostrarObjeto();
+				System.out.println();
 			}
 		}else {
-			System.out.println("El inventario está vacío...");
+			System.out.println("El inventario estÃ¡ vacÃ­o...");
 		}	
 	}
 	
@@ -74,9 +77,10 @@ public class inventarioObjetos {
 			System.out.println("INVENTARIO");
 			for(int i=0;i<this.inventory.size();i++) {
 				this.inventory.get(i).mostrarObjeto();
+				System.out.println();				
 			}
 		}else {
-			System.out.println("El inventario está vacío...");
+			System.out.println("El inventario estÃ¡ vacÃ­o...");
 		}	
 	}			
 	
@@ -87,28 +91,30 @@ public class inventarioObjetos {
 				tem.add(this.inventory.get(i));
 			}
 		}
-		mostrarInventario(tem);
+		if(!inventarioVacio(tem)) {
+			mostrarInventario(tem);			
+		}else {
+			System.out.println("No hay objetos con ese rango");
+		}
+
 	}
 	
-	private int ingresoEntero(String mensaje, int ingreso) {
-		try(Scanner teclado = new Scanner(System.in);) {
-			System.out.println(mensaje);
-			int entry = teclado.nextInt();
-			if(entry<1||entry>ingreso) {
-				return ingresoEntero(mensaje,ingreso);
-			}else {
-				return entry;
-			}
-		}catch(Exception e) {
+	private String ingresoEntero(String mensaje, int ingreso) {
+		@SuppressWarnings("resource")
+		Scanner teclado = new Scanner(System.in);
+		System.out.println(mensaje);
+		String entrada = teclado.nextLine();
+		if(numeroEntero(entrada,ingreso) == true) {
+			return entrada;
+		}else {
 			return ingresoEntero(mensaje,ingreso);
-			
 		}
-	}	
+	}
 	
 	public void filtrar() {
-		String mensaje = "Ingresa el N° de rango";
+		String mensaje = "Ingresa el NÂ° de rango";
 		int ingreso = 10;
-		int opcion = ingresoEntero(mensaje,ingreso);
+		int opcion = Integer.parseInt(ingresoEntero(mensaje,ingreso));
 		filtroObjetos(opcion);
 	}
 
