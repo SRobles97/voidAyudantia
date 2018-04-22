@@ -1,7 +1,8 @@
 <pre>
-25/03 AÑADIDO PRIMER AVANCE.
-01/04 AÑADIDO SEGUNDO AVANCE.
-04/04 AÑADIDO TERCER AVANCE
-07/04 AVANCES ORGANIZADOS EN CARPETAS
-18/04 Corrección
+25/03 Añadido primer avance.
+01/04 Añadido segundo avance.
+04/04 Añadido tercer avance.
+07/04 Avances organizados en carpetas.
+18/04 Actualización de cambios hechos en las clases.
+22/04 Añadido quinto avance.
 </pre>
