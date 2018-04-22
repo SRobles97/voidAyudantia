@@ -77,25 +77,28 @@ public class Batalla {
 	private void buffDados() {
 		int dados = diferenciaDados();
 		if(dados > 1) {
-			System.out.println("¡BUEN PRESAGIO!");			
-			System.out.println("La fuerza del escuadrón ha aumentado...\n");			
+			System.out.println("Â¡BUEN PRESAGIO!");			
+			System.out.println("La fuerza del escuadrÃ³n ha aumentado...\n");			
 			for(int i=0; i<this.escuadron.length;i++){
 				this.damage[i] = this.damage[i]*dados;
 			}
 		}else if(dados < 0){
-			System.out.println("¡MALA SUERTE!");
+			System.out.println("Â¡MALA SUERTE!");
 			System.out.println("La fuerza del enemigo ha aumentado...\n");
 			dados = dados*-1;
 			this.damageEnemigo = this.damageEnemigo*dados;
 			
 		}else {
-			System.out.println("El combate se llevará a cabo normalmente...\n");
+			System.out.println("El combate se llevarÃ¡ a cabo normalmente...\n");
 		}
 	}
 	
 	private int restarHP(int vida, int ataque, int defensa) {
-		vida = vida - (ataque-defensa);
-		return vida;
+		if(ataque - defensa < 0) {
+			return vida;
+		}else {
+			return vida - (ataque - defensa);			
+		}
 	}
 	
 	private void compararFaccion() {
@@ -131,7 +134,7 @@ public class Batalla {
 					System.out.println("Salud de "+nombre+" : "+vida+"\n");						
 				}
 			}else {
-				System.out.println("El monstruo atacará primero...\n");
+				System.out.println("El monstruo atacarÃ¡ primero...\n");
 				vida = restarHP(vida,this.damageEnemigo,gladiador.getDEF());				
 				if(vida < 0) {
 					System.out.println(nombre+" ha muerto honorablemente en combate...\n");
