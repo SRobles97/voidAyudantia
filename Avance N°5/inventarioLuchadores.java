@@ -67,24 +67,24 @@ public class inventarioLuchadores {
 		if(!listaLlena(this.inventario)) {
 			this.inventario.add(new Luchador());
 		}else {
-			System.out.println("El inventario de luchadores está lleno...");
+			System.out.println("El inventario de luchadores estÃ¡ lleno...");
 			
 		}
 	}
 	
 	private void borrarLuchador() {
 		if(!listaVacia(this.inventario)) {
-			String mensaje = "Ingresa el N° del luchador que quieres eliminar";
+			String mensaje = "Ingresa el NÂ° del luchador que quieres eliminar";
 			int rango = this.inventario.size();
 			int posicion = Integer.parseInt(ingresoEntero(mensaje,rango))-1;
 			this.inventario.remove(posicion);			
 		}else {
-			System.out.println("No se pueden eliminar más luchadores...");
+			System.out.println("No se pueden eliminar mÃ¡s luchadores...");
 		}
 	}
 	
 	private void mostrarLuchador() {
-	   String mensaje = "Ingresa el N° del luchador que quieres mostrar";
+	   String mensaje = "Ingresa el NÂ° del luchador que quieres mostrar";
 	   int rango = this.inventario.size();
 	   int posicion = Integer.parseInt(ingresoEntero(mensaje,rango))-1;
 	   this.inventario.get(posicion).mostrarStats();
@@ -92,7 +92,7 @@ public class inventarioLuchadores {
 	
 	public void mostrarTodos() {
 		for(int i=0;i<this.inventario.size();i++) {
-			System.out.println("Luchador N°"+(i+1));
+			System.out.println("Luchador NÂ°"+(i+1));
 			 this.inventario.get(i).mostrarDatos();
 			 System.out.println();
 		}
@@ -127,7 +127,7 @@ public class inventarioLuchadores {
 		if(!listaVacia(temporal)) {
 			mostrarLuchadores(temporal);			
 		}else {
-			System.out.println("No hay luchadores en la facción...");
+			System.out.println("No hay luchadores en la facciÃ³n...");
 		}
 
 	}
@@ -160,19 +160,6 @@ public class inventarioLuchadores {
 		int ingreso = 5;
 		int opcion = Integer.parseInt(ingresoEntero(mensaje,ingreso));
 		imprimirRango(opcion);
-	}
-	
-	public void seleccionarLuchadores() { // por ahora no se va a usar
-		if(this.inventario.size() > 1) {
-			String mensaje = "Ingresa la posición del luchador que quieres agregar al escuadrón";
-			int rango = this.inventario.size();
-			int posicion = Integer.parseInt(ingresoEntero(mensaje,rango))-1;
-			this.escuadron[0] = this.inventario.get(posicion);
-			this.inventario.remove(posicion);						
-		}else {
-			System.out.println("El único luchador en el inventario ha sido agregado al escuadrón GAE");
-			
-		}
 	}
 	
 }
