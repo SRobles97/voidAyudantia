@@ -8,6 +8,7 @@ public class Batalla {
 	private Luchador[] escuadron;
 	private int[] damage;
 	private int damageEnemigo;
+	private int damageBase;
 	private int hpEnemigo;
 	
 	Batalla(){
@@ -20,6 +21,7 @@ public class Batalla {
 		ataqueAuxiliar();
 		this.enemigo = new Monstruo();
 		this.damageEnemigo = this.enemigo.getATK();
+		this.damageBase = this.damageEnemigo;
 		this.hpEnemigo = this.enemigo.getHP();
 	}
 	
@@ -101,26 +103,31 @@ public class Batalla {
 		}
 	}
 	
-	private void compararFaccion() {
-		for(int i=0; i<this.escuadron.length;i++) {
-			if(this.escuadron[i].getGuild().equals("Fuego") && this.enemigo.getGuild().equals("Agua")) {
-				damage[i] = (int) (damage[i]*0.75);
-			}else if(this.escuadron[i].getGuild().equals("Fuego") && this.enemigo.getGuild().equals("Planta")) {
-				damage[i] = (int) (damage[i]*1.5);				
-			}else if(this.escuadron[i].getGuild().equals("Agua") && this.enemigo.getGuild().equals("Fuego")) {
-				damage[i] = (int) (damage[i]*1.5);				
-			}else if(this.escuadron[i].getGuild().equals("Agua") && this.enemigo.getGuild().equals("Planta")) {
-				damage[i] = (int) (damage[i]*0.75);				
-			}else if(this.escuadron[i].getGuild().equals("Planta") && this.enemigo.getGuild().equals("Agua")) {
-				damage[i] = (int) (damage[i]*1.5);				
-			}else if(this.escuadron[i].getGuild().equals("Planta") && this.enemigo.getGuild().equals("Fuego")) {
-				damage[i] = (int) (damage[i]*0.75);				
-			}
+	private void compararFaccion(Luchador gladiador, int ataque) {
+		if(gladiador.getGuild().equals("Fuego") && this.enemigo.getGuild().equals("Agua")) {
+			ataque = (int) (ataque*0.75);
+			this.damageEnemigo = (int) (this.damageBase*1.5);
+		}else if(gladiador.getGuild().equals("Fuego") && this.enemigo.getGuild().equals("Planta")) {	
+			ataque = (int) (ataque*1.5);	
+			this.damageEnemigo = (int) (this.damageBase*0.75);			
+		}else if(gladiador.getGuild().equals("Agua") && this.enemigo.getGuild().equals("Fuego")) {	
+			ataque = (int) (ataque*1.5);
+			this.damageEnemigo = (int) (this.damageBase*0.75);			
+		}else if(gladiador.getGuild().equals("Agua") && this.enemigo.getGuild().equals("Planta")) {	
+			ataque = (int) (ataque*0.75);
+			this.damageEnemigo = (int) (this.damageBase*1.5);			
+		}else if(gladiador.getGuild().equals("Planta") && this.enemigo.getGuild().equals("Agua")) {		
+			ataque = (int) (ataque*1.5);
+			this.damageEnemigo = (int) (this.damageBase*0.75);			
+		}else if(gladiador.getGuild().equals("Planta") && this.enemigo.getGuild().equals("Fuego")) {		
+			ataque = (int) (ataque*0.75);	
+			this.damageEnemigo = (int) (this.damageBase*1.5);			
 		}
 	}
 	
 	private void pvm(Luchador gladiador, int vida, String nombre, int ataque) {
 		// batalla 1 vs 1 
+		compararFaccion(gladiador,ataque);		
 		while(victoriaAliada() != true && vida > 0) {
 			if(gladiador.getAGI() > this.enemigo.getAGI()) {
 				System.out.println(nombre+" ataca primero al monstruo\n");
@@ -161,7 +168,6 @@ public class Batalla {
 	public void pelear() {
 		// para testear la pelea con un escuadron completo...
 		buffDados();
-		compararFaccion();
 		for(int i=0; i<this.escuadron.length;i++) {
 			int vida = this.escuadron[i].getHP();
 			int ataque = damage[i];
