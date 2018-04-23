@@ -19,7 +19,6 @@ public class Monstruo {
 		this.def = aleatorio(5,25);
 		this.agi = aleatorio(10,100);
 		this.objetos = new objetoEquipable[3];
-		generarObjetos();
 		this.drop = obtenerDrop();
 	}
 	
@@ -58,6 +57,7 @@ public class Monstruo {
 	}
 	
 	private objetoEquipable obtenerDrop() {
+		generarObjetos();
 		double prob = Math.random();
 		if(prob < 0.6) {
 			return this.objetos[2];
