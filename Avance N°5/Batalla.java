@@ -71,7 +71,7 @@ public class Batalla {
 	
 	
 	private int diferenciaDados() {
-		int seis = (int) Math.random()+6+1;
+		int seis = (int) Math.random()*6+1;
 		int ocho = (int) Math.random()*8+1;
 		return ocho-seis;
 	}
