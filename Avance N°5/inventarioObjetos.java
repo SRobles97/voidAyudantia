@@ -50,12 +50,12 @@ public class inventarioObjetos {
 	
 	private void quitarObjeto() {
 		if(!inventarioVacio(this.inventory)) {
-			String mensaje = "Ingresa el N° del objeto que quieres botar.";
+			String mensaje = "Ingresa el NÂ° del objeto que quieres botar.";
 			int ingreso = this.inventory.size();
 			int i = Integer.parseInt(ingresoEntero(mensaje,ingreso))-1;
 			this.inventory.remove(i);
 		}else {
-			System.out.println("No hay ningún objeto en el inventario...");			
+			System.out.println("No hay ningÃºn objeto en el inventario...");			
 		}
 		
 	}
@@ -68,7 +68,7 @@ public class inventarioObjetos {
 				System.out.println();
 			}
 		}else {
-			System.out.println("El inventario está vacío...");
+			System.out.println("El inventario estÃ¡ vacÃ­o...");
 		}	
 	}
 	
@@ -80,7 +80,7 @@ public class inventarioObjetos {
 				System.out.println();				
 			}
 		}else {
-			System.out.println("El inventario está vacío...");
+			System.out.println("El inventario estÃ¡ vacÃ­o...");
 		}	
 	}			
 	
@@ -91,10 +91,10 @@ public class inventarioObjetos {
 				tem.add(this.inventory.get(i));
 			}
 		}
-		if(!inventarioVacio(tem)) {
-			mostrarInventario(tem);			
+		if(tem.size() == 0) {
+			System.out.println("No hay ningÃºn objeto con ese rango...");
 		}else {
-			System.out.println("No hay objetos con ese rango");
+			mostrarInventario(tem);				
 		}
 
 	}
@@ -112,7 +112,7 @@ public class inventarioObjetos {
 	}
 	
 	public void filtrar() {
-		String mensaje = "Ingresa el N° de rango";
+		String mensaje = "Ingresa el NÂ° de rango";
 		int ingreso = 10;
 		int opcion = Integer.parseInt(ingresoEntero(mensaje,ingreso));
 		filtroObjetos(opcion);
