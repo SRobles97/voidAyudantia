@@ -117,10 +117,10 @@ public class inventarioLuchadores {
 				temporal.add(this.inventario.get(i));
 			}
 		}
-		if(!listaVacia(temporal)) {
-			mostrarLuchadores(temporal);			
+		if(temporal.size() == 0) {
+			System.out.println("No hay ningún luchador en esa facción...");
 		}else {
-			System.out.println("No hay luchadores en la facción...");
+			mostrarLuchadores(temporal);				
 		}
 	}
 	
@@ -131,10 +131,10 @@ public class inventarioLuchadores {
 				temporal.add(inventario.get(i));
 			}
 		}
-		if(!listaVacia(temporal)) {
-			mostrarLuchadores(temporal);				
+		if(temporal.size() == 0) {
+			System.out.println("No hay ningún luchador con ese rango...");
 		}else {
-			System.out.println("No hay luchadores con ese rango...");			
+			mostrarLuchadores(temporal);				
 		}
 		
 	}
