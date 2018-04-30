@@ -91,10 +91,10 @@ public class inventarioObjetos {
 				tem.add(this.inventory.get(i));
 			}
 		}
-		if(!inventarioVacio(tem)) {
-			mostrarInventario(tem);			
+		if(tem.size() == 0) {
+			System.out.println("No hay ningún objeto con ese rango...");
 		}else {
-			System.out.println("No hay objetos con ese rango");
+			mostrarInventario(tem);				
 		}
 
 	}
