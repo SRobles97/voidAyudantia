@@ -138,38 +138,6 @@ public class Batalla {
 			this.damageEnemigo = (int) (this.enemigo.getATK()*1.5);			
 		}
 	}
-	
-	private void pvm(Luchador gladiador, int vida, String nombre, int ataque) {
-		// batalla 1 vs 1 
-		compararFaccion(gladiador,ataque);
-		while(victoriaAliada() != true && vida > 0) {
-			if(gladiador.getAGI() > this.enemigo.getAGI()) {
-				System.out.println(nombre+" ataca primero al monstruo\n");
-				this.hpEnemigo = restarHP(this.hpEnemigo,ataque, this.enemigo.getDEF());
-				System.out.println(nombre+" le ha dejado "+this.hpEnemigo+" de vida al monstruo...");
-				System.out.println("El monstruo va a contraatacar...");
-				vida = restarHP(vida,this.damageEnemigo,gladiador.getDEF());				
-				if(vida <= 0) {
-					System.out.println(nombre+" ha muerto honorablemente en combate...\n");					
-				}else {
-					System.out.println("Salud de "+nombre+" : "+vida+"\n");						
-				}
-			}else {
-				System.out.println("El monstruo atacará primero...\n");
-				vida = restarHP(vida,this.damageEnemigo,gladiador.getDEF());				
-				if(vida < 0) {
-					System.out.println(nombre+" ha muerto honorablemente en combate...\n");
-				}else {
-					System.out.println("El monstruo le ha dejado "+vida+" de vida a "+nombre+"...");					
-					System.out.println(nombre+" va a contraatacar...");
-					this.hpEnemigo = restarHP(this.hpEnemigo,ataque, this.enemigo.getDEF());				
-					System.out.println("Salud del monstruo :"+this.hpEnemigo+"\n");						
-				}
-
-			}
-			
-		}		
-	}
 
 	private void aftermath() {
 		if(victoriaAliada() == true) {
