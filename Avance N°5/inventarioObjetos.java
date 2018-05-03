@@ -1,4 +1,4 @@
-package luchones;
+package ayudantia;
 
 import java.util.ArrayList;
 import java.util.Scanner;
