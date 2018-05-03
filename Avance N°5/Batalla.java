@@ -35,15 +35,15 @@ public class Batalla {
 	}
 	
 	private boolean victoriaEnemiga() {
-		boolean xd = false;
+		boolean boo = false;
 		for(int i = 0; i<this.hp.length;i++) {
 			if(this.hp[i] < 0) {
-				xd = true;
+				boo = true;
 			}else {
-				xd = false;
+				boo = false;
 			}
 		}
-		return xd;
+		return boo;
 	}
 	
 	private void llenarLista() { 
@@ -90,22 +90,22 @@ public class Batalla {
 	}
 	
 	private void buffDados() {
-		System.out.println("¡SE LANZAN LOS DADOS!");
+		System.out.println("Â¡SE LANZAN LOS DADOS!");
 		int dados = diferenciaDados();
 		if(dados > 1) {
-			System.out.println("¡BUEN PRESAGIO!");			
-			System.out.println("La fuerza del escuadrón ha aumentado...\n");			
+			System.out.println("Â¡BUEN PRESAGIO!");			
+			System.out.println("La fuerza del escuadrÃ³n ha aumentado...\n");			
 			for(int i=0; i<this.escuadron.length;i++){
 				this.damage[i] = this.damage[i]*dados;
 			}
 		}else if(dados < 0){
-			System.out.println("¡MALA SUERTE!");
+			System.out.println("Â¡MALA SUERTE!");
 			System.out.println("La fuerza del enemigo ha aumentado...\n");
 			dados = dados*-1;
 			this.damageEnemigo = this.damageEnemigo*dados;
 			
 		}else {
-			System.out.println("El combate se llevará a cabo normalmente...\n");
+			System.out.println("El combate se llevarÃ¡ a cabo normalmente...\n");
 		}
 	}
 	
@@ -155,7 +155,7 @@ public class Batalla {
 					System.out.println("Salud de "+nombre+" : "+vida+"\n");						
 				}
 			}else {
-				System.out.println("El monstruo atacará primero...\n");
+				System.out.println("El monstruo atacarÃ¡ primero...\n");
 				vida = restarHP(vida,this.damageEnemigo,gladiador.getDEF());				
 				if(vida < 0) {
 					System.out.println(nombre+" ha muerto honorablemente en combate...\n");
@@ -201,7 +201,7 @@ public class Batalla {
 		while(!victoriaAliada() && !victoriaEnemiga()) {
 			for(int i = 0; i<gladiador.length;i++) {
 				if(gladiador[i].getAGI() > this.enemigo.getAGI() && vida[i] > 0) {
-					System.out.println(gladiador[i].getName()+" es más rápido asi que ataca primero al monstruo");
+					System.out.println(gladiador[i].getName()+" es mÃ¡s rÃ¡pido asi que ataca primero al monstruo");
 					this.hpEnemigo = restarHP(this.hpEnemigo,ataque[i], this.enemigo.getDEF());
 					System.out.println(gladiador[i].getName()+" le ha dejado "+this.hpEnemigo+" de vida al monstruo...\n");
 				}
@@ -220,13 +220,13 @@ public class Batalla {
 			}
 			for(int i = 0; i<gladiador.length;i++) {
 				if(gladiador[i].getAGI()  < this.enemigo.getAGI() && vida[i] > 0) {
-					System.out.println(gladiador[i].getName()+" atacará al monstruo");
+					System.out.println(gladiador[i].getName()+" atacarÃ¡ al monstruo");
 					this.hpEnemigo = restarHP(this.hpEnemigo,ataque[i], this.enemigo.getDEF());
 					System.out.println(gladiador[i].getName()+" le ha dejado "+this.hpEnemigo+" de vida al monstruo...\n");
 				}
 			}	
 			if(!victoriaAliada() && !victoriaEnemiga()) {
-				System.out.println("El combate continúa...\n\n");
+				System.out.println("El combate continÃºa...\n\n");
 			}
 
 		}
@@ -234,7 +234,7 @@ public class Batalla {
 	
 	private void mostrarSquad() {
 		for(int i=0;i<this.escuadron.length;i++) {
-			System.out.print("Luchador N°"+(i+1)+" ");
+			System.out.print("Luchador NÂ°"+(i+1)+" ");
 			escuadron[i].mostrarDatos();
 			System.out.println();
 		}
