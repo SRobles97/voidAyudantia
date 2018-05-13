@@ -5,26 +5,16 @@ import java.util.Scanner;
 public class inventarioLuchadores {
 	
 	private ArrayList<Luchador> inventario;
+	private Scanner teclado;
 	
 	inventarioLuchadores(){
+		this.teclado = new Scanner(System.in);
 		this.inventario = new ArrayList<Luchador>();
 		agregarLuchador();
 	}
 	
-	private boolean listaLlena(ArrayList<Luchador> lista) {	
-		if(lista.size()>25) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	private boolean listaVacia(ArrayList<Luchador> lista) {
-		if(lista.size() == 1) {
-			return true;
-		}else {
-			return false;
-		}
+	public ArrayList<Luchador> getInventario(){
+		return this.inventario;
 	}
 	
 	private boolean numeroEntero(String cadena, int rango) {
@@ -42,10 +32,8 @@ public class inventarioLuchadores {
 	}
 	
 	private String ingresoEntero(String mensaje, int ingreso) {
-		@SuppressWarnings("resource")
-		Scanner teclado = new Scanner(System.in);
 		System.out.println(mensaje);
-		String entrada = teclado.nextLine();
+		String entrada = this.teclado.nextLine();
 		if(numeroEntero(entrada,ingreso) == true) {
 			return entrada;
 		}else {
@@ -57,8 +45,8 @@ public class inventarioLuchadores {
 		System.out.println("La cantidad actual es de"+this.inventario.size()+" luchadores");
 	}
 	
-	private void agregarLuchador() {	
-		if(!listaLlena(this.inventario)) {
+	public void agregarLuchador() {
+		if(this.inventario.size() < 25) {
 			this.inventario.add(new Luchador());
 		}else {
 			System.out.println("El inventario de luchadores está lleno...");
@@ -67,7 +55,7 @@ public class inventarioLuchadores {
 	}
 	
 	private void borrarLuchador() {
-		if(!listaVacia(this.inventario)) {
+		if(this.inventario.size() > 1) {
 			String mensaje = "Ingresa el N° del luchador que quieres eliminar";
 			int rango = this.inventario.size();
 			int posicion = Integer.parseInt(ingresoEntero(mensaje,rango))-1;
@@ -84,7 +72,7 @@ public class inventarioLuchadores {
 	   this.inventario.get(posicion).mostrarStats();
 	}
 	
-	private void mostrarTodos() {
+	public void mostrarTodos() {
 		for(int i=0;i<this.inventario.size();i++) {
 			System.out.println("Luchador N°"+(i+1));
 			 this.inventario.get(i).mostrarDatos();
@@ -123,7 +111,6 @@ public class inventarioLuchadores {
 		}else {
 			mostrarLuchadores(temporal);				
 		}
-
 	}
 	
 	private void imprimirRango(int rank) {
@@ -142,7 +129,7 @@ public class inventarioLuchadores {
 	}
 	
 	public void filtrarFaccion() {
-		String mensaje = "(1) Fuego, (2) Agua, (3) Planta.";
+		String mensaje = "Ingresa la facción que deseas filtrar:\n(1) Fuego\n(2) Agua\n(3) Planta";
 		int ingreso = 3;
 		int opcion = Integer.parseInt(ingresoEntero(mensaje,ingreso));
 		String guild = selecFaccion(opcion);
@@ -154,6 +141,6 @@ public class inventarioLuchadores {
 		int ingreso = 5;
 		int opcion = Integer.parseInt(ingresoEntero(mensaje,ingreso));
 		imprimirRango(opcion);
-	}		
-	
+	}
+
 }
