@@ -38,7 +38,7 @@ public class Luchador extends Personaje {
 	}
 	
     private String[] nombresLuchadores() {
-    	String[] nombres = {"Igor Spopovich","Egg King","God","Dylantero","Messi","Chefcito","Jeff","King Dragon","Satanael","Caligula","Papa Franku","Pink Guy","Dross","Freetanga","Kast"};
+    	String[] nombres = {"Igor Spopovich","Egg King","God","Zatman","Tarro","Chefcito","Jeff","King Dragon","Satanael","Caligula","Papa Franku","Pink Guy","Dross","Freetanga","Kast"};
     	return nombres;
     }	
     
