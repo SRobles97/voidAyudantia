@@ -17,7 +17,7 @@ public class Luchador extends Personaje {
 		return this.name;
 	}
 	
-	public int rank() {
+	public int getRank() {
 		return this.rank;
 	}
 	
