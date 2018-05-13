@@ -51,7 +51,7 @@ public class inventarioLuchadores {
 	}
 	
 	private void borrarLuchador() {
-		if(this.inventario.size() > 0) {
+		if(this.inventario.size() > 1) {
 			String mensaje = "Ingresa el N° del luchador que quieres eliminar";
 			int rango = this.inventario.size();
 			int posicion = Integer.parseInt(ingresoEntero(mensaje,rango))-1;
