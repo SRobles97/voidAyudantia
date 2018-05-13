@@ -5,25 +5,11 @@ import java.util.Scanner;
 public class inventarioObjetos {
 	
 	private ArrayList<objetoEquipable> inventory;
+	private Scanner teclado;
 	
 	inventarioObjetos(){
+		this.teclado = new Scanner(System.in);
 		this.inventory = new ArrayList<objetoEquipable>();
-	}
-	
-	private boolean inventarioLleno(ArrayList<objetoEquipable> lista) {
-		if(lista.size() == 10) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	private boolean inventarioVacio(ArrayList<objetoEquipable> lista) {
-		if(lista.size() == 0) {
-			return true;
-		}else {
-			return false;
-		}
 	}
 	
 	private boolean numeroEntero(String cadena, int rango) {
@@ -40,8 +26,16 @@ public class inventarioObjetos {
 		}
 	}
 	
+	public void agregarDrop(objetoEquipable drop) {
+		if(this.inventory.size() < 10) {
+			this.inventory.add(drop);
+		}else {
+			System.out.println("Inventario lleno");
+		}
+	}	
+	
 	private void agregarObjeto() {
-		if(!inventarioLleno(this.inventory)) {
+		if(this.inventory.size() < 10) {
 			this.inventory.add(new objetoEquipable());
 		}else {
 			System.out.println("Inventario lleno");
@@ -49,7 +43,7 @@ public class inventarioObjetos {
 	}
 	
 	private void quitarObjeto() {
-		if(!inventarioVacio(this.inventory)) {
+		if(this.inventory.size() > 0) {
 			String mensaje = "Ingresa el N° del objeto que quieres botar.";
 			int ingreso = this.inventory.size();
 			int i = Integer.parseInt(ingresoEntero(mensaje,ingreso))-1;
@@ -61,7 +55,7 @@ public class inventarioObjetos {
 	}
 	
 	public void mostrarInventario(ArrayList<objetoEquipable> lista) {
-		if(!inventarioVacio(lista)) {
+		if(lista.size() > 0) {
 			System.out.println("INVENTARIO");
 			for(int i=0;i<lista.size();i++) {
 				lista.get(i).mostrarObjeto();
@@ -73,7 +67,7 @@ public class inventarioObjetos {
 	}
 	
 	public void mostrarTodo() {
-		if(!inventarioVacio(this.inventory)) {
+		if(this.inventory.size() > 0) {
 			System.out.println("INVENTARIO");
 			for(int i=0;i<this.inventory.size();i++) {
 				this.inventory.get(i).mostrarObjeto();
@@ -100,10 +94,8 @@ public class inventarioObjetos {
 	}
 	
 	private String ingresoEntero(String mensaje, int ingreso) {
-		@SuppressWarnings("resource")
-		Scanner teclado = new Scanner(System.in);
 		System.out.println(mensaje);
-		String entrada = teclado.nextLine();
+		String entrada = this.teclado.nextLine();
 		if(numeroEntero(entrada,ingreso) == true) {
 			return entrada;
 		}else {
