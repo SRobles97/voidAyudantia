@@ -54,7 +54,8 @@ public class inventarioObjetos {
 		
 	}
 	
-	public void mostrarInventario(ArrayList<objetoEquipable> lista) {
+	private void mostrarInventario(ArrayList<objetoEquipable> lista) {
+		// mostrar filtro
 		if(lista.size() > 0) {
 			System.out.println("INVENTARIO");
 			for(int i=0;i<lista.size();i++) {
