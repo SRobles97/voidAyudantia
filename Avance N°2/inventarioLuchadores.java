@@ -5,26 +5,12 @@ import java.util.Scanner;
 public class inventarioLuchadores {
 	
 	private ArrayList<Luchador> inventario;
+	private Scanner teclado;
 	
 	inventarioLuchadores(){
+		this.teclado = new Scanner(System.in);
 		this.inventario = new ArrayList<Luchador>();
 		agregarLuchador();
-	}
-	
-	private boolean listaLlena(ArrayList<Luchador> lista) {	
-		if(lista.size()>25) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	private boolean listaVacia(ArrayList<Luchador> lista) {
-		if(lista.size() == 1) {
-			return true;
-		}else {
-			return false;
-		}
 	}
 	
 	private boolean numeroEntero(String cadena, int rango) {
@@ -42,10 +28,8 @@ public class inventarioLuchadores {
 	}
 	
 	private String ingresoEntero(String mensaje, int ingreso) {
-		@SuppressWarnings("resource")
-		Scanner teclado = new Scanner(System.in);
 		System.out.println(mensaje);
-		String entrada = teclado.nextLine();
+		String entrada = this.teclado.nextLine();
 		if(numeroEntero(entrada,ingreso) == true) {
 			return entrada;
 		}else {
@@ -58,7 +42,7 @@ public class inventarioLuchadores {
 	}
 	
 	private void agregarLuchador() {	
-		if(!listaLlena(this.inventario)) {
+		if(this.inventario.size() < 25) {
 			this.inventario.add(new Luchador());
 		}else {
 			System.out.println("El inventario de luchadores está lleno...");
@@ -67,7 +51,7 @@ public class inventarioLuchadores {
 	}
 	
 	private void borrarLuchador() {
-		if(!listaVacia(this.inventario)) {
+		if(this.inventario.size() > 0) {
 			String mensaje = "Ingresa el N° del luchador que quieres eliminar";
 			int rango = this.inventario.size();
 			int posicion = Integer.parseInt(ingresoEntero(mensaje,rango))-1;
