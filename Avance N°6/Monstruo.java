@@ -10,7 +10,6 @@ public class Monstruo extends Personaje {
 		this.def = random(5,25);
 		this.spd = random(10,100);
 		this.objetos = new ObjetoEquipable[3];
-		generarObjetos();
 		this.drop = obtenerDrop();
 	}
 	
