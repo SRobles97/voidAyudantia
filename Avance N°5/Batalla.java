@@ -3,6 +3,7 @@ package ayudantia;
 import java.util.Random;
 public class Batalla {
 	private Monstruo enemigo;
+	private Random azar;
 	private inventarioLuchadores aliados;
 	private inventarioObjetos inventario;
 	private Luchador[] escuadron;
@@ -12,6 +13,7 @@ public class Batalla {
 	private int hpEnemigo;
 	
 	Batalla(){
+		this.azar = new Random();
 		this.aliados = new inventarioLuchadores();
 		this.inventario = new inventarioObjetos();
 		llenarLista();
@@ -84,8 +86,8 @@ public class Batalla {
 	}
 	
 	private int diferenciaDados() {
-		int seis = (int) Math.random()*6+1;
-		int ocho = (int) Math.random()*8+1;
+		int seis = 1+this.azar.nextInt(6);
+		int ocho = 1+this.azar.nextInt(8);
 		return ocho-seis;
 	}
 	
@@ -94,7 +96,7 @@ public class Batalla {
 		int dados = diferenciaDados();
 		if(dados > 1) {
 			System.out.println("¡BUEN PRESAGIO!");			
-			System.out.println("La fuerza del escuadrón ha aumentado...\n");			
+			System.out.println("La fuerza del escuadrón ha aumentado por "+dados+"\n");			
 			for(int i=0; i<this.escuadron.length;i++){
 				this.damage[i] = this.damage[i]*dados;
 			}
@@ -104,7 +106,7 @@ public class Batalla {
 			dados = dados*-1;
 			this.damageEnemigo = this.damageEnemigo*dados;
 			
-		}else {
+		}else if(dados == 0){
 			System.out.println("El combate se llevará a cabo normalmente...\n");
 		}
 	}
@@ -138,27 +140,23 @@ public class Batalla {
 			this.damageEnemigo = (int) (this.enemigo.getATK()*1.5);			
 		}
 	}
-
-	private void aftermath() {
-		if(victoriaAliada() == true) {
-			System.out.println("Como recompensa por derrotar al monstruo se ha obtenido el siguiente drop:");
-			this.enemigo.getDrop().mostrarObjeto();
-			this.inventario.agregarDrop(this.enemigo.getDrop());
-		}else {
-			System.out.println("El monstruo se ha comido a todos los luchadores...");
+	
+	
+	private void mostrarSquad() {
+	    System.out.println("Los siguientes luchadores van a pelear:");
+		for(int i=0;i<this.escuadron.length;i++) {
+			System.out.print("Luchador N°"+(i+1)+" ");
+			escuadron[i].mostrarStats();
+			System.out.println();
 		}
 	}
 	
-	public void pelear() {
-		// para testear la pelea con un escuadron completo...
-		buffDados();
-		for(int i=0; i<this.escuadron.length;i++) {
-			int vida = this.escuadron[i].getHP();
-			int ataque = damage[i];
-			String nombre = this.escuadron[i].getName();
-			pvm(this.escuadron[i],vida,nombre,ataque);
-		}
-		aftermath();
+	private void mostrarAtaques() {
+	    System.out.println("Los siguientes luchadores van a pelear:");
+		for(int i=0;i<this.escuadron.length;i++) {
+			System.out.print("Luchador N°"+(i+1)+" ");
+			System.out.println("Ataque: "+this.damage[i]);
+		}		
 	}
 	
 	private void batalla(Luchador[] gladiador, int[] vida, int[] ataque) {
@@ -167,53 +165,64 @@ public class Batalla {
 			compararFaccion(gladiador[i],ataque[i]);			
 		}
 		while(!victoriaAliada() && !victoriaEnemiga()) {
+			System.out.println("INICIO DEL COMBATE\n");
+			
 			for(int i = 0; i<gladiador.length;i++) {
 				if(gladiador[i].getAGI() > this.enemigo.getAGI() && vida[i] > 0 && this.hpEnemigo > 0) {
-					System.out.println(gladiador[i].getName()+" es más rápido asi que ataca primero al monstruo");
+					System.out.println(gladiador[i].getName()+" ataca antes al monstruo");
 					this.hpEnemigo = restarHP(this.hpEnemigo,ataque[i], this.enemigo.getDEF());
 					System.out.println(gladiador[i].getName()+" le ha dejado "+this.hpEnemigo+" de vida al monstruo...\n");
 				}
 			}		
+			
 			for(int i=0;i<gladiador.length;i++) {
 				if(vida[i] > 0 && this.hpEnemigo > 0) {
-					System.out.println("El monstruo va a atacar...\n");	
+					System.out.println("TURNO DEL MONSTRUO\nAtaque: "+this.enemigo.getATK());	
+					System.out.println("El monstruo ataca a "+gladiador[i].getName());
 					vida[i] = restarHP(vida[i],this.damageEnemigo,gladiador[i].getDEF());
 					if(vida[i] < 0) {
 						System.out.println(gladiador[i].getName()+" ha muerto honorablemente en combate...\n");						
 					}else {
 						System.out.println("El monstruo le ha dejado "+vida[i]+" de vida a "+gladiador[i].getName()+"...\n");										
 					}
+					System.out.println("FIN TURNO DEL MONSTRUO\n");	
 					break;
 				}
 			}
+
 			for(int i = 0; i<gladiador.length;i++) {
 				if(gladiador[i].getAGI()  < this.enemigo.getAGI() && vida[i] > 0 && this.hpEnemigo > 0) {
-					System.out.println(gladiador[i].getName()+" atacará al monstruo");
+					System.out.println(gladiador[i].getName()+" ataca al monstruo");
 					this.hpEnemigo = restarHP(this.hpEnemigo,ataque[i], this.enemigo.getDEF());
 					System.out.println(gladiador[i].getName()+" le ha dejado "+this.hpEnemigo+" de vida al monstruo...\n");
 				}
 			}	
+			
 			if(!victoriaAliada() && !victoriaEnemiga()) {
-				System.out.println("El combate continúa...\n\n");
+				System.out.println("EL COMBATE SE REANUDA\n\n");
+			}else {
+				System.out.println("FIN DEL COMBATE.\n\n");				
 			}
 
 		}
 	}
 	
-	private void mostrarSquad() {
-		for(int i=0;i<this.escuadron.length;i++) {
-			System.out.print("Luchador N°"+(i+1)+" ");
-			escuadron[i].mostrarDatos();
-			System.out.println();
+	private void aftermath() {
+		if(victoriaAliada() == true) {
+			System.out.println("Como recompensa por derrotar al monstruo se ha obtenido el siguiente drop:");
+			this.enemigo.getDrop().mostrarObjeto();
+			this.inventario.agregarDrop(this.enemigo.getDrop());
+			this.inventario.mostrarTodo();
+		}else {
+			System.out.println("EL MONSTRUO HA GANADO");
 		}
-	}
-
+	}	
 	
 	private void enfrentamiento() {
 		// pelea 6 vs 1
-     System.out.println("Los siguientes luchadores van a pelear:");
-     mostrarSquad();
+         mostrarSquad();
 	 buffDados();
+         mostrarAtaques();	 
 	 batalla(this.escuadron, this.hp, this.damage);
 	 aftermath();
 		
@@ -224,5 +233,4 @@ public class Batalla {
 		Batalla m = new Batalla();
 		m.enfrentamiento();
 	}
-
 }
