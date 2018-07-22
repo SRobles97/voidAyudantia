@@ -6,4 +6,5 @@
 18-04-2018 Actualización de cambios hechos en las clases.
 22-04-2018 Añadido quinto avance.
 09-05-2018 Añadido sexto avance.
+22-07-2018 Añadido avance final.
 </pre>
